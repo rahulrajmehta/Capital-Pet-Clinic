@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://capitalpetclinic.in/sitemap.xml

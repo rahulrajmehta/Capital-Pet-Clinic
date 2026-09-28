@@ -1,0 +1,17 @@
+# Dependencies & runtime
+node_modules/
+npm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Zip archives
+*.zip
+
+# Temporary scripts
+download_*.ps1
+sync_footers.js
+update_footers.js
+check_missing.js
