@@ -16,7 +16,7 @@ A modern, responsive, conversion-focused multi-page website built for **Capital 
   - **Dr. Ankit R. Bara** (B.V.Sc & A.H. — Veterinary Physician & Diagnostic Specialist)
 - **Address:** Old Argora Road, near Balibagicha Dindayal Chowk, Harmu Housing Colony, Argora, Ranchi, Jharkhand 834002
 - **Geo Coordinates:** `23.3529227, 85.2976377` | **Plus Code:** `973X+53 Ranchi, Jharkhand`
-- **Phone / WhatsApp:** `+91 97981 72418` / `+91 97981 72415`
+- **Phone / WhatsApp:** `+91 97981 72415` / `+91 83403 38945`
 - **Google Reviews:** 5.0 ★ Rating (23+ Verified Client Reviews)
 
 ---
@@ -103,6 +103,6 @@ A modern, responsive, conversion-focused multi-page website built for **Capital 
 
 ## 📞 Emergency & Booking Contacts
 
-- **Phone Call:** [+91 97981 72418](tel:09798172418)
-- **WhatsApp Chat:** [Click to Message on WhatsApp](https://wa.me/919798172418)
+- **Phone Call:** [+91 97981 72415](tel:09798172415) / [+91 83403 38945](tel:08340338945)
+- **WhatsApp Chat:** [Click to Message on WhatsApp (+91 97981 72415)](https://wa.me/919798172415)
 - **Google Maps Directions:** [Harmu Housing Colony, Argora, Ranchi](https://maps.google.com/?q=23.3529227,85.2976377)

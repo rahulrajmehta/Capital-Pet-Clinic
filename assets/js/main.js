@@ -206,7 +206,7 @@ function initAppointmentWhatsAppForm() {
 
     const whatsappNumber = (typeof CLINIC_CONFIG !== 'undefined' && CLINIC_CONFIG.whatsappNumber) 
       ? CLINIC_CONFIG.whatsappNumber 
-      : '919798172418';
+      : '919798172415';
 
     const text = `*New Appointment Request - Capital Pet Clinic Ranchi*
 ---------------------------------------

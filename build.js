@@ -86,10 +86,10 @@ function renderHead({ title, description, keywords, canonicalUrl, depth = 0, isE
     <div class="hindi-text text-sm" style="color: #e2edea; margin-top:4px;">${config.nameHindi} · Argora, Ranchi</div>
   </div>
 
-  <!-- Transparent Client Placeholders Banner (Sleek & Dismissible) -->
+  <!-- Transparent Notice Banner (Sleek & Dismissible) -->
   <div id="top-notice-bar" class="placeholder-notice-bar">
-    <div class="container" style="display:flex; align-items:center; justify-content:center;">
-      <span><i class="fa-solid fa-circle-info"></i> Primary Phone: <strong><a href="tel:${config.primaryPhone}" style="color:inherit; text-decoration:underline;">${config.primaryPhoneFormatted}</a></strong> · Timings: 9 AM – 10 PM daily (Client placeholders pending final confirmation)</span>
+    <div class="container" style="display:flex; align-items:center; justify-content:center; gap: 8px; flex-wrap: wrap;">
+      <span><i class="fa-solid fa-phone"></i> Call Clinic: <strong><a href="tel:${config.primaryPhone}" style="color:inherit; text-decoration:underline;">${config.primaryPhoneFormatted}</a></strong> / <strong><a href="tel:${config.alternatePhone}" style="color:inherit; text-decoration:underline;">${config.alternatePhoneFormatted}</a></strong> · Timings: 9 AM – 10 PM daily</span>
       <button type="button" class="notice-close-btn" onclick="dismissNoticeBar()" aria-label="Dismiss notice">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -186,9 +186,12 @@ function renderHeader(activeRoute = '', depth = 0) {
       <a href="${contactHref}" class="drawer-link${activeRoute === 'contact' ? ' active' : ''}"><i class="fa-solid fa-location-dot"></i> Contact & Map</a>
     </div>
 
-    <div class="drawer-cta">
+    <div class="drawer-cta" style="display:flex; flex-direction:column; gap:8px;">
       <a href="tel:${config.primaryPhone}" class="btn btn-primary" style="width:100%;">
         <i class="fa-solid fa-phone"></i> Call ${config.primaryPhoneFormatted}
+      </a>
+      <a href="tel:${config.alternatePhone}" class="btn btn-outline" style="width:100%; border-color:var(--primary); color:var(--primary);">
+        <i class="fa-solid fa-phone-volume"></i> Alt: ${config.alternatePhoneFormatted}
       </a>
       <a href="https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent('Hello Capital Pet Clinic Ranchi, I would like to book an appointment.')}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width:100%;">
         <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
@@ -350,7 +353,8 @@ function renderFooter(depth = 0, currentDir = '') {
               <i class="fa-solid fa-phone"></i>
               <div>
                 <a href="tel:${config.primaryPhone}" style="color:#FFFFFF; font-weight:600;">${config.primaryPhoneFormatted}</a><br>
-                <small style="color:#74918a;">${config.phonePlaceholderNotice}</small>
+                <a href="tel:${config.alternatePhone}" style="color:#e2edea; font-size:13px;"><i class="fa-solid fa-phone-volume" style="font-size:11px; margin-right:4px;"></i>${config.alternatePhoneFormatted}</a><br>
+                <small style="color:#74918a;">Official Clinic Lines</small>
               </div>
             </div>
             <div class="footer-nap-item">
@@ -368,10 +372,12 @@ function renderFooter(depth = 0, currentDir = '') {
         <div>
           © ${new Date().getFullYear()} ${config.name}. All Rights Reserved. Ranchi, Jharkhand.
         </div>
-        <div style="display: flex; gap: 16px;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
           <a href="${config.mapDirectionsUrl}" target="_blank" rel="noopener noreferrer" style="color: #a1bfb8;"><i class="fa-solid fa-map-location-dot"></i> Google Maps Directions</a>
           <span>·</span>
-          <a href="tel:${config.primaryPhone}" style="color: #a1bfb8;"><i class="fa-solid fa-phone"></i> Direct Call</a>
+          <a href="tel:${config.primaryPhone}" style="color: #a1bfb8;"><i class="fa-solid fa-phone"></i> Call: ${config.primaryPhoneFormatted}</a>
+          <span>·</span>
+          <a href="tel:${config.alternatePhone}" style="color: #a1bfb8;"><i class="fa-solid fa-phone-volume"></i> Alt: ${config.alternatePhoneFormatted}</a>
         </div>
       </div>
     </div>
@@ -415,7 +421,7 @@ function getBaseSchema() {
     "alternateName": config.nameHindi,
     "image": "https://capitalpetclinic.in/assets/images/original-banner.png",
     "url": "https://capitalpetclinic.in/",
-    "telephone": `+91${config.primaryPhone}`,
+    "telephone": [`+91${config.primaryPhone}`, `+91${config.alternatePhone}`],
     "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",
@@ -2217,7 +2223,7 @@ function buildContactPage() {
   const content = `
   ${renderHead({
     title: "Contact Capital Pet Clinic Ranchi | Argora Harmu Map & Phone",
-    description: "Contact Capital Pet Clinic on Old Argora Road, Harmu Housing Colony, Ranchi. Phone: 9798172418. Embedded Google Map, directions & WhatsApp appointment booking.",
+    description: `Contact Capital Pet Clinic on Old Argora Road, Harmu Housing Colony, Ranchi. Phone: ${config.primaryPhoneFormatted} / ${config.alternatePhoneFormatted}. Embedded Google Map, directions & WhatsApp appointment booking.`,
     keywords: "contact capital pet clinic, pet clinic argora phone, vet doctor harmu contact, capital pet clinic address ranchi, emergency vet phone ranchi",
     canonicalUrl: 'contact.html',
     schemaJson: getBaseSchema()
@@ -2260,8 +2266,15 @@ function buildContactPage() {
             <div class="contact-detail-icon"><i class="fa-solid fa-phone"></i></div>
             <div>
               <div class="contact-detail-label">Telephone / WhatsApp</div>
-              <div class="contact-detail-value">
-                <a href="tel:${config.primaryPhone}" style="color:var(--primary); font-size:18px; font-weight:700;">${config.primaryPhoneFormatted}</a>
+              <div class="contact-detail-value" style="display:flex; flex-direction:column; gap:6px;">
+                <div>
+                  <span style="font-size:13px; color:var(--ink-light); margin-right:6px;">Primary:</span>
+                  <a href="tel:${config.primaryPhone}" style="color:var(--primary); font-size:18px; font-weight:700;">${config.primaryPhoneFormatted}</a>
+                </div>
+                <div>
+                  <span style="font-size:13px; color:var(--ink-light); margin-right:6px;">Alternate:</span>
+                  <a href="tel:${config.alternatePhone}" style="color:var(--primary); font-size:17px; font-weight:700;">${config.alternatePhoneFormatted}</a>
+                </div>
               </div>
               <div class="contact-detail-placeholder">${config.phonePlaceholderNotice}</div>
             </div>

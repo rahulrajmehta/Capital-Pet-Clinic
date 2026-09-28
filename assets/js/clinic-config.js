@@ -12,12 +12,12 @@ const CLINIC_CONFIG = {
   taglineHindi: "रांची में आपके पालतू जानवरों की संपूर्ण देखभाल व चिकित्सा",
   
   // Primary Phone & WhatsApp
-  primaryPhone: "9798172418",
-  primaryPhoneFormatted: "+91 97981 72418",
-  alternatePhone: "9798172415",
-  alternatePhoneFormatted: "+91 97981 72415",
-  whatsappNumber: "919798172418",
-  phonePlaceholderNotice: "Primary clinic number (097981 72418 / 097981 72415)",
+  primaryPhone: "9798172415",
+  primaryPhoneFormatted: "+91 97981 72415",
+  alternatePhone: "8340338945",
+  alternatePhoneFormatted: "+91 83403 38945",
+  whatsappNumber: "919798172415",
+  phonePlaceholderNotice: "Official Clinic Lines: +91 97981 72415 / +91 83403 38945",
 
   // Address & Geographic Coordinates
   address: {
