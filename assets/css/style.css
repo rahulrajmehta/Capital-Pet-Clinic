@@ -2679,13 +2679,20 @@ textarea:focus-visible {
 }
 
 .site-header.scrolled {
-  background: rgba(15, 76, 69, 0.94) !important;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  height: 66px;
+  background-color: rgba(250, 248, 243, 0.98) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(15, 76, 69, 0.08);
+  border-bottom: 1px solid var(--border-subtle);
+  height: var(--header-height-scrolled);
 }
+
+[data-theme="dark"] .site-header.scrolled {
+  background-color: rgba(10, 22, 20, 0.96) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
 @media (max-width: 768px) {
   .site-header.scrolled {
     height: 60px;
