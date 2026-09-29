@@ -131,6 +131,7 @@
   
   <!-- STICKY SITE HEADER -->
   <header class="site-header">
+    <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
     <div class="container header-container">
       <a href="index.html" class="site-logo" aria-label="Capital Pet Clinic Home">
         <div class="site-logo-icon">
@@ -624,9 +625,28 @@
         </div>
       </div>
 
-      <!-- Verified Review Cards Grid -->
-      <div class="reviews-grid">
-        
+      <!-- Interactive Reviews Carousel (All 9 Verified Google Reviews) -->
+      <div class="carousel-container" id="reviews-carousel" aria-roledescription="carousel" aria-label="Customer Reviews Slider">
+        <div class="carousel-top-bar">
+          <div class="carousel-badge-live">
+            <span class="live-dot"></span>
+            <span>Live Verified Testimonials · 9 Reviews (Swipe or Click)</span>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button type="button" class="carousel-arrow-btn carousel-prev" aria-label="Previous review">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="carousel-arrow-btn carousel-next" aria-label="Next review">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track">
+            
+              <div class="carousel-slide" data-index="0">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -662,6 +682,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="1">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -697,6 +721,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="2">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -732,6 +760,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="3">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -767,6 +799,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="4">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -802,6 +838,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="5">
+                
     <div class="review-card">
       <div>
         <div class="review-card-top">
@@ -837,13 +877,154 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="6">
+                
+    <div class="review-card">
+      <div>
+        <div class="review-card-top">
+          <div class="review-author-info">
+            <div class="review-avatar-circle">R</div>
+            <div>
+              <div class="review-author-name">
+                <span>Riya Murmu</span>
+                <i class="fa-brands fa-google review-google-badge" title="Verified Google Review"></i>
+              </div>
+              <div class="review-date-text">3 months ago · Google Maps</div>
+            </div>
+          </div>
+          <span class="review-service-chip">Dog Treatment</span>
+        </div>
+
+        <div class="review-stars-row">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+
+        <p class="review-body-text">"I took my dog to this clinic for treatment, the vet was caring and professional. I am really happy and satisfied with the care provided to my dog."</p>
       </div>
 
-      <div style="text-align: center; margin-top: 36px;">
-        <a href="reviews.html" class="btn btn-outline" style="font-size:15px; padding:12px 28px;">
-          <span>Read All 9 Verified Testimonials</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
+      <div class="review-proof-action">
+        <button type="button" class="review-proof-btn" data-modal-img="assets/images/reviews/review-riya-murmu.png" data-modal-title="Google Review: Riya Murmu" data-modal-caption="Verified 5.0-Star Google Review for Capital Pet Clinic, Argora, Ranchi">
+          <i class="fa-solid fa-image"></i> View Review Proof
+        </button>
+        <span style="font-size:11px; color:#22c55e; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Verified</span>
+      </div>
+    </div>
+  
+              </div>
+            
+              <div class="carousel-slide" data-index="7">
+                
+    <div class="review-card">
+      <div>
+        <div class="review-card-top">
+          <div class="review-author-info">
+            <div class="review-avatar-circle">V</div>
+            <div>
+              <div class="review-author-name">
+                <span>Vanucia Nongbsap</span>
+                <i class="fa-brands fa-google review-google-badge" title="Verified Google Review"></i>
+              </div>
+              <div class="review-date-text">3 months ago · Google Maps</div>
+            </div>
+          </div>
+          <span class="review-service-chip">Compassionate Vet</span>
+        </div>
+
+        <div class="review-stars-row">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+
+        <p class="review-body-text">"Highly recommend! Very cooperative, compassionate, and professional. My dog received timely care and treatment, and I'm truly thankful for the excellent service."</p>
+      </div>
+
+      <div class="review-proof-action">
+        <button type="button" class="review-proof-btn" data-modal-img="assets/images/reviews/review-vanucia.png" data-modal-title="Google Review: Vanucia Nongbsap" data-modal-caption="Verified 5.0-Star Google Review for Capital Pet Clinic, Argora, Ranchi">
+          <i class="fa-solid fa-image"></i> View Review Proof
+        </button>
+        <span style="font-size:11px; color:#22c55e; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Verified</span>
+      </div>
+    </div>
+  
+              </div>
+            
+              <div class="carousel-slide" data-index="8">
+                
+    <div class="review-card">
+      <div>
+        <div class="review-card-top">
+          <div class="review-author-info">
+            <div class="review-avatar-circle">M</div>
+            <div>
+              <div class="review-author-name">
+                <span>Mohan Studio</span>
+                <i class="fa-brands fa-google review-google-badge" title="Verified Google Review"></i>
+              </div>
+              <div class="review-date-text">3 months ago · Google Maps</div>
+            </div>
+          </div>
+          <span class="review-service-chip">Clean OT & Service</span>
+        </div>
+
+        <div class="review-stars-row">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+
+        <p class="review-body-text">"Excellent pet clinic with caring staff, experienced doctors, clean facilities, and prompt service. My pet received outstanding treatment."</p>
+      </div>
+
+      <div class="review-proof-action">
+        <button type="button" class="review-proof-btn" data-modal-img="assets/images/reviews/review-mohan-studio.png" data-modal-title="Google Review: Mohan Studio" data-modal-caption="Verified 5.0-Star Google Review for Capital Pet Clinic, Argora, Ranchi">
+          <i class="fa-solid fa-image"></i> View Review Proof
+        </button>
+        <span style="font-size:11px; color:#22c55e; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Verified</span>
+      </div>
+    </div>
+  
+              </div>
+            
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <div class="carousel-dots">
+            
+              <button type="button" class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="6" aria-label="Go to slide 7"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="7" aria-label="Go to slide 8"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="8" aria-label="Go to slide 9"></button>
+            
+          </div>
+          <a href="reviews.html" class="btn btn-outline" style="font-size:14px; padding:10px 22px;">
+            <span>View All Proofs & Grid</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -857,8 +1038,28 @@
         <p class="section-subtitle">Real, authentic photographs from our clinic on Old Argora Road, Ranchi. Sterile surgical theater, gentle feline consultation room, and in-clinic supportive care.</p>
       </div>
 
-      <div class="real-clinic-grid">
-        
+      <!-- Interactive Clinic Facility & Surgery Tour Carousel -->
+      <div class="carousel-container" id="clinic-tour-carousel" aria-roledescription="carousel" aria-label="Clinic Facility Photos Slider">
+        <div class="carousel-top-bar">
+          <div class="carousel-badge-live">
+            <span class="live-dot" style="background:var(--teal);"></span>
+            <span>Real Argora Clinic & OT Tour (8 Authentic Photos)</span>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button type="button" class="carousel-arrow-btn carousel-prev" aria-label="Previous photo">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="carousel-arrow-btn carousel-next" aria-label="Next photo">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track">
+            
+              <div class="carousel-slide" data-index="0">
+                
     <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-surgery-vivek.png" data-modal-title="Dr. Vivek Kr. Gupta Performing Surgery in OT" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
       <div class="real-clinic-img-box">
         <img src="assets/images/real-clinic-surgery-vivek.png" alt="Dr. Vivek Kr. Gupta Performing Surgery in OT at Capital Pet Clinic Ranchi" loading="lazy">
@@ -873,6 +1074,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="1">
+                
     <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-persian-cat.png" data-modal-title="White Persian Cat Examination" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
       <div class="real-clinic-img-box">
         <img src="assets/images/real-clinic-persian-cat.png" alt="White Persian Cat Examination at Capital Pet Clinic Ranchi" loading="lazy">
@@ -887,6 +1092,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="2">
+                
     <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-labrador-care.png" data-modal-title="Golden Labrador Receiving IV Fluid Therapy" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
       <div class="real-clinic-img-box">
         <img src="assets/images/real-clinic-labrador-care.png" alt="Golden Labrador Receiving IV Fluid Therapy at Capital Pet Clinic Ranchi" loading="lazy">
@@ -901,6 +1110,10 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="3">
+                
     <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-surgery-front.png" data-modal-title="Sterile Surgical Operation Theater Setup" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
       <div class="real-clinic-img-box">
         <img src="assets/images/real-clinic-surgery-front.png" alt="Sterile Surgical Operation Theater Setup at Capital Pet Clinic Ranchi" loading="lazy">
@@ -915,13 +1128,107 @@
       </div>
     </div>
   
+              </div>
+            
+              <div class="carousel-slide" data-index="4">
+                
+    <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-puppy-drip.png" data-modal-title="Puppy Care & In-Clinic Supportive Treatment" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
+      <div class="real-clinic-img-box">
+        <img src="assets/images/real-clinic-puppy-drip.png" alt="Puppy Care & In-Clinic Supportive Treatment at Capital Pet Clinic Ranchi" loading="lazy">
+        <div class="real-clinic-verified-badge">
+          <i class="fa-solid fa-camera"></i> Real Photo
+        </div>
       </div>
+      <div class="real-clinic-meta">
+        <span class="gallery-badge real">Emergency</span>
+        <h3 class="real-clinic-title">Puppy Care & In-Clinic Supportive Treatment</h3>
+        <p class="real-clinic-sub">Capital Pet Clinic, Argora, Ranchi</p>
+      </div>
+    </div>
+  
+              </div>
+            
+              <div class="carousel-slide" data-index="5">
+                
+    <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-cat-basket.png" data-modal-title="Safe Feline Carrier & Low-Stress Arrival" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
+      <div class="real-clinic-img-box">
+        <img src="assets/images/real-clinic-cat-basket.png" alt="Safe Feline Carrier & Low-Stress Arrival at Capital Pet Clinic Ranchi" loading="lazy">
+        <div class="real-clinic-verified-badge">
+          <i class="fa-solid fa-camera"></i> Real Photo
+        </div>
+      </div>
+      <div class="real-clinic-meta">
+        <span class="gallery-badge real">Feline Care</span>
+        <h3 class="real-clinic-title">Safe Feline Carrier & Low-Stress Arrival</h3>
+        <p class="real-clinic-sub">Capital Pet Clinic, Argora, Ranchi</p>
+      </div>
+    </div>
+  
+              </div>
+            
+              <div class="carousel-slide" data-index="6">
+                
+    <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-surgery-table.png" data-modal-title="Canine Surgical Procedure on Sterile Table" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
+      <div class="real-clinic-img-box">
+        <img src="assets/images/real-clinic-surgery-table.png" alt="Canine Surgical Procedure on Sterile Table at Capital Pet Clinic Ranchi" loading="lazy">
+        <div class="real-clinic-verified-badge">
+          <i class="fa-solid fa-camera"></i> Real Photo
+        </div>
+      </div>
+      <div class="real-clinic-meta">
+        <span class="gallery-badge real">Surgery</span>
+        <h3 class="real-clinic-title">Canine Surgical Procedure on Sterile Table</h3>
+        <p class="real-clinic-sub">Capital Pet Clinic, Argora, Ranchi</p>
+      </div>
+    </div>
+  
+              </div>
+            
+              <div class="carousel-slide" data-index="7">
+                
+    <div class="real-clinic-card" data-modal-img="assets/images/real-clinic-surgery-1.png" data-modal-title="Surgeon Focused under Operation Lamp" data-modal-caption="Authentic Facility Photo · Capital Pet Clinic, Argora, Ranchi">
+      <div class="real-clinic-img-box">
+        <img src="assets/images/real-clinic-surgery-1.png" alt="Surgeon Focused under Operation Lamp at Capital Pet Clinic Ranchi" loading="lazy">
+        <div class="real-clinic-verified-badge">
+          <i class="fa-solid fa-camera"></i> Real Photo
+        </div>
+      </div>
+      <div class="real-clinic-meta">
+        <span class="gallery-badge real">Surgery</span>
+        <h3 class="real-clinic-title">Surgeon Focused under Operation Lamp</h3>
+        <p class="real-clinic-sub">Capital Pet Clinic, Argora, Ranchi</p>
+      </div>
+    </div>
+  
+              </div>
+            
+          </div>
+        </div>
 
-      <div style="text-align: center; margin-top: 36px;">
-        <a href="gallery.html" class="btn btn-outline" style="font-size:15px; padding:12px 28px;">
-          <i class="fa-solid fa-images"></i>
-          <span>Explore Full Clinic Photo Gallery (8 Authentic Photos)</span>
-        </a>
+        <div class="carousel-controls">
+          <div class="carousel-dots">
+            
+              <button type="button" class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="6" aria-label="Go to slide 7"></button>
+            
+              <button type="button" class="carousel-dot" data-slide="7" aria-label="Go to slide 8"></button>
+            
+          </div>
+          <a href="gallery.html" class="btn btn-outline" style="font-size:14px; padding:10px 22px;">
+            <i class="fa-solid fa-images"></i> <span>Explore Full Photo Gallery</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1239,6 +1546,9 @@
 
   <!-- DESKTOP FLOATING CTAs (Bottom Right) -->
   <div class="desktop-floating-actions" aria-label="Quick Action Buttons">
+    <button type="button" id="back-to-top-btn" class="floating-btn back-to-top-btn" title="Back to top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
     <a href="tel:9798172415" class="floating-btn floating-phone" title="Call Clinic: +91 97981 72415">
       <i class="fa-solid fa-phone"></i>
     </a>

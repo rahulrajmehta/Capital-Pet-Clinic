@@ -113,6 +113,7 @@ function renderHeader(activeRoute = '', depth = 0) {
   return `
   <!-- STICKY SITE HEADER -->
   <header class="site-header">
+    <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
     <div class="container header-container">
       <a href="${homeHref}" class="site-logo" aria-label="${config.name} Home">
         <div class="site-logo-icon">
@@ -385,6 +386,9 @@ function renderFooter(depth = 0, currentDir = '') {
 
   <!-- DESKTOP FLOATING CTAs (Bottom Right) -->
   <div class="desktop-floating-actions" aria-label="Quick Action Buttons">
+    <button type="button" id="back-to-top-btn" class="floating-btn back-to-top-btn" title="Back to top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
     <a href="tel:${config.primaryPhone}" class="floating-btn floating-phone" title="Call Clinic: ${config.primaryPhoneFormatted}">
       <i class="fa-solid fa-phone"></i>
     </a>
@@ -766,16 +770,43 @@ function buildHomePage() {
         </div>
       </div>
 
-      <!-- Verified Review Cards Grid -->
-      <div class="reviews-grid">
-        ${config.verifiedReviews.slice(0, 6).map(rev => renderReviewCard(rev, 0)).join('')}
-      </div>
+      <!-- Interactive Reviews Carousel (All 9 Verified Google Reviews) -->
+      <div class="carousel-container" id="reviews-carousel" aria-roledescription="carousel" aria-label="Customer Reviews Slider">
+        <div class="carousel-top-bar">
+          <div class="carousel-badge-live">
+            <span class="live-dot"></span>
+            <span>Live Verified Testimonials · ${config.verifiedReviews.length} Reviews (Swipe or Click)</span>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button type="button" class="carousel-arrow-btn carousel-prev" aria-label="Previous review">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="carousel-arrow-btn carousel-next" aria-label="Next review">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
 
-      <div style="text-align: center; margin-top: 36px;">
-        <a href="reviews.html" class="btn btn-outline" style="font-size:15px; padding:12px 28px;">
-          <span>Read All ${config.verifiedReviews.length} Verified Testimonials</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track">
+            ${config.verifiedReviews.map((rev, idx) => `
+              <div class="carousel-slide" data-index="${idx}">
+                ${renderReviewCard(rev, 0)}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <div class="carousel-dots">
+            ${config.verifiedReviews.map((_, idx) => `
+              <button type="button" class="carousel-dot${idx === 0 ? ' active' : ''}" data-slide="${idx}" aria-label="Go to slide ${idx + 1}"></button>
+            `).join('')}
+          </div>
+          <a href="reviews.html" class="btn btn-outline" style="font-size:14px; padding:10px 22px;">
+            <span>View All Proofs & Grid</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -789,15 +820,43 @@ function buildHomePage() {
         <p class="section-subtitle">Real, authentic photographs from our clinic on Old Argora Road, Ranchi. Sterile surgical theater, gentle feline consultation room, and in-clinic supportive care.</p>
       </div>
 
-      <div class="real-clinic-grid">
-        ${config.clinicPhotos.slice(0, 4).map(photo => renderClinicPhotoCard(photo, 0)).join('')}
-      </div>
+      <!-- Interactive Clinic Facility & Surgery Tour Carousel -->
+      <div class="carousel-container" id="clinic-tour-carousel" aria-roledescription="carousel" aria-label="Clinic Facility Photos Slider">
+        <div class="carousel-top-bar">
+          <div class="carousel-badge-live">
+            <span class="live-dot" style="background:var(--teal);"></span>
+            <span>Real Argora Clinic & OT Tour (${config.clinicPhotos.length} Authentic Photos)</span>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button type="button" class="carousel-arrow-btn carousel-prev" aria-label="Previous photo">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="carousel-arrow-btn carousel-next" aria-label="Next photo">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
 
-      <div style="text-align: center; margin-top: 36px;">
-        <a href="gallery.html" class="btn btn-outline" style="font-size:15px; padding:12px 28px;">
-          <i class="fa-solid fa-images"></i>
-          <span>Explore Full Clinic Photo Gallery (${config.clinicPhotos.length} Authentic Photos)</span>
-        </a>
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track">
+            ${config.clinicPhotos.map((photo, idx) => `
+              <div class="carousel-slide" data-index="${idx}">
+                ${renderClinicPhotoCard(photo, 0)}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <div class="carousel-dots">
+            ${config.clinicPhotos.map((_, idx) => `
+              <button type="button" class="carousel-dot${idx === 0 ? ' active' : ''}" data-slide="${idx}" aria-label="Go to slide ${idx + 1}"></button>
+            `).join('')}
+          </div>
+          <a href="gallery.html" class="btn btn-outline" style="font-size:14px; padding:10px 22px;">
+            <i class="fa-solid fa-images"></i> <span>Explore Full Photo Gallery</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>

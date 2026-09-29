@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initNoticeBar();
   initBrandedPageIntro();
   initThemeToggle();
+  initScrollProgressBar();
   initStickyHeader();
+  initBackToTop();
   initMobileDrawer();
   initFaqAccordion();
   initAppointmentWhatsAppForm();
   initCounterAnimations();
+  initCarousels();
+  initCardTiltEffect();
   initGsapScrollEffects();
   initImageModal();
 });
@@ -99,19 +103,77 @@ function initThemeToggle() {
 }
 
 /* ===================================================================
-   3. STICKY HEADER (Shrinks on Scroll)
+   3. SCROLL PROGRESS BAR (Silky Gradient Tracker)
+   =================================================================== */
+function initScrollProgressBar() {
+  let bar = document.getElementById('scroll-progress-bar');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'scroll-progress-bar';
+    bar.className = 'scroll-progress-bar';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.prepend(bar);
+  }
+
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${progress}%`;
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+}
+
+/* ===================================================================
+   3B. STICKY HEADER (Glassmorphism & Shrink on Scroll)
    =================================================================== */
 function initStickyHeader() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+  function handleScroll() {
+    if (window.scrollY > 24) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+}
+
+/* ===================================================================
+   3C. BACK-TO-TOP BUTTON (Smooth Elevation & Return)
+   =================================================================== */
+function initBackToTop() {
+  let btn = document.getElementById('back-to-top-btn');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'back-to-top-btn';
+    btn.className = 'back-to-top-btn';
+    btn.setAttribute('aria-label', 'Scroll to top');
+    btn.setAttribute('title', 'Back to top');
+    btn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+    document.body.appendChild(btn);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 340) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
   }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
 }
 
 /* ===================================================================
@@ -258,42 +320,283 @@ function initCounterAnimations() {
 }
 
 /* ===================================================================
-   8. GSAP SCROLL REVEALS & MICRO-ANIMATIONS
+   8. INTERACTIVE TOUCH-ENABLED CAROUSEL ENGINE
    =================================================================== */
-function initGsapScrollEffects() {
-  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
+function initCarousels() {
+  const containers = document.querySelectorAll('.carousel-container');
+  if (!containers.length) return;
 
-  if (typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
+  containers.forEach(container => {
+    const track = container.querySelector('.carousel-track');
+    const slides = container.querySelectorAll('.carousel-slide');
+    const prevBtn = container.querySelector('.carousel-prev');
+    const nextBtn = container.querySelector('.carousel-next');
+    const dots = container.querySelectorAll('.carousel-dot');
 
-    gsap.utils.toArray('.services-grid, .pet-showcase-grid, .steps-grid').forEach(grid => {
-      gsap.from(grid.children, {
-        scrollTrigger: {
-          trigger: grid,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        y: 24,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: 'power2.out'
+    if (!track || !slides.length) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+    let isTouching = false;
+    let startX = 0;
+    let diffX = 0;
+
+    function getVisibleCount() {
+      const width = window.innerWidth;
+      if (width <= 640) return 1;
+      if (width <= 1024) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, slides.length - getVisibleCount());
+    }
+
+    function updateTrack(animate = true) {
+      const maxIdx = getMaxIndex();
+      if (currentIndex > maxIdx) currentIndex = maxIdx;
+      if (currentIndex < 0) currentIndex = 0;
+
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const gap = window.innerWidth <= 640 ? 16 : 24;
+      const offset = currentIndex * (slideWidth + gap);
+
+      track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
+      track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      const maxIdx = getMaxIndex();
+      currentIndex = currentIndex >= maxIdx ? 0 : currentIndex + 1;
+      updateTrack(true);
+    }
+
+    function prevSlide() {
+      const maxIdx = getMaxIndex();
+      currentIndex = currentIndex <= 0 ? maxIdx : currentIndex - 1;
+      updateTrack(true);
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        updateTrack(true);
+        resetAutoplay();
       });
     });
 
-    gsap.utils.toArray('.doctor-card').forEach(card => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%'
-        },
+    // Touch & Swipe Controls
+    track.addEventListener('touchstart', (e) => {
+      isTouching = true;
+      startX = e.touches[0].clientX;
+      diffX = 0;
+      stopAutoplay();
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isTouching) return;
+      diffX = e.touches[0].clientX - startX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+      if (!isTouching) return;
+      isTouching = false;
+      if (diffX < -45) {
+        nextSlide();
+      } else if (diffX > 45) {
+        prevSlide();
+      }
+      startAutoplay();
+    }, { passive: true });
+
+    // Mouse drag support for desktop
+    let isMouseDown = false;
+    track.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      startX = e.clientX;
+      diffX = 0;
+      stopAutoplay();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      diffX = e.clientX - startX;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      if (diffX < -45) {
+        nextSlide();
+      } else if (diffX > 45) {
+        prevSlide();
+      }
+      startAutoplay();
+    });
+
+    // Autoplay Cycle (4.5s)
+    function startAutoplay() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAutoplay();
+      autoPlayTimer = setInterval(nextSlide, 4500);
+    }
+
+    function stopAutoplay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+
+    window.addEventListener('resize', () => updateTrack(false), { passive: true });
+
+    updateTrack(false);
+    startAutoplay();
+  });
+}
+
+/* ===================================================================
+   9. INTERACTIVE 3D CARD TILT FOR DESKTOP
+   =================================================================== */
+function initCardTiltEffect() {
+  if (window.matchMedia('(hover: none) or (pointer: coarse) or (prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const cards = document.querySelectorAll('.service-card, .doctor-card, .action-card, .why-card, .pet-showcase-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const tiltX = (x - centerX) / centerX;
+      const tiltY = (y - centerY) / centerY;
+
+      card.style.transform = `perspective(1000px) rotateX(${-tiltY * 5}deg) rotateY(${tiltX * 5}deg) translateY(-8px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* ===================================================================
+   10. GSAP SCROLL REVEALS & CINEMATIC ENTRANCE
+   =================================================================== */
+function initGsapScrollEffects() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  // 1. Check if GSAP is available
+  if (typeof gsap !== 'undefined') {
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Hero Cinematic Entrance (Page Load)
+    const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-hindi-subtitle, .hero-subline-en, .hero-buttons, .hero-pet-badge-row');
+    if (heroElements.length) {
+      gsap.from(heroElements, {
         y: 28,
         opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out'
+        duration: 0.75,
+        stagger: 0.1,
+        ease: 'power3.out'
       });
+    }
+
+    // Quick Action Section Cards
+    const actionCards = document.querySelectorAll('.quick-action-grid .action-card');
+    if (actionCards.length && typeof ScrollTrigger !== 'undefined') {
+      gsap.from(actionCards, {
+        scrollTrigger: {
+          trigger: '.quick-action-section',
+          start: 'top 88%'
+        },
+        y: 32,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+    }
+
+    // Section Titles Reveal
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%'
+          },
+          y: 24,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+      });
+
+      // Grids Stagger Reveal
+      gsap.utils.toArray('.services-grid, .pet-showcase-grid, .why-choose-grid, .steps-grid, .real-clinic-grid, .reviews-grid').forEach(grid => {
+        gsap.from(grid.children, {
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 28,
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.08,
+          ease: 'power2.out'
+        });
+      });
+
+      // Doctors Cards Stagger
+      gsap.utils.toArray('.doctors-grid .doctor-card').forEach(card => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%'
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.65,
+          ease: 'power2.out'
+        });
+      });
+    }
+  } else {
+    // Fallback: IntersectionObserver for smooth scroll reveals if GSAP CDN fails
+    const revealTargets = document.querySelectorAll('.section-header, .service-card, .doctor-card, .step-card, .why-card');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealTargets.forEach(el => {
+      el.classList.add('reveal-fade-up');
+      revealObserver.observe(el);
     });
   }
 }
